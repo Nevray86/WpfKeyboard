@@ -7,38 +7,141 @@
         mc:Ignorable="d"
         Title="Тренажер для слепой печати
         " Height="450" Width="800">
-    <Grid  KeyDown="key" KeyUp="Grid_KeyUp" x:Name="eee">
-        
-        
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="Gray"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="Green"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="5"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="20" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="TextBox.Static.Border" Color="Red" />
+        <SolidColorBrush x:Key="TextBox.MouseOver.Border" Color="#FF7EB4EA"/>
+        <SolidColorBrush x:Key="TextBox.Focus.Border" Color="#FF569DE5"/>
+        <Style x:Key="TextBoxStyle2" TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush"  Value="{StaticResource TextBox.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="5"/>
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="border" CornerRadius="20" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
 
-        <TextBox x:Name="s" Grid.ColumnSpan="10" FontSize="48"/>
 
-        <Button Grid.Column="0" Grid.Row="1" FontSize="48" x:Name="Q">Q</Button>
-        <Button Grid.Column="1" Grid.Row="1" FontSize="48" x:Name="W">W</Button>
-        <Button Grid.Column="2" Grid.Row="1" FontSize="48" x:Name="E">E</Button>
-        <Button Grid.Column="3" Grid.Row="1" FontSize="48" x:Name="R">R</Button>
-        <Button Grid.Column="4" Grid.Row="1" FontSize="48" x:Name="T">T</Button>
-        <Button Grid.Column="5" Grid.Row="1" FontSize="48" x:Name="Y">Y</Button>
-        <Button Grid.Column="6" Grid.Row="1" FontSize="48" x:Name="U">U</Button>
-        <Button Grid.Column="7" Grid.Row="1" FontSize="48" x:Name="I">I</Button>
-        <Button Grid.Column="8" Grid.Row="1" FontSize="48" x:Name="O">O</Button>
-        <Button Grid.Column="9" Grid.Row="1" FontSize="48" x:Name="P">P</Button>
-        <Button Grid.Column="0" Grid.Row="1" FontSize="48" x:Name="A" Margin="16,108,64,108" Grid.RowSpan="3" Grid.ColumnSpan="2">A</Button>
-        <Button Grid.Column="1" Grid.Row="1" FontSize="48" x:Name="S" Grid.ColumnSpan="2" Margin="16,108,64,108" Grid.RowSpan="3">S</Button>
-        <Button Grid.Column="2" Grid.Row="1" FontSize="48" x:Name="D" Grid.ColumnSpan="2" Margin="16,108,64,108" Grid.RowSpan="3">D</Button>
-        <Button Grid.Column="3" Grid.Row="1" FontSize="48" x:Name="F" Grid.ColumnSpan="2" Margin="16,108,64,108" Grid.RowSpan="3">F</Button>
-        <Button Grid.Column="4" Grid.Row="1" FontSize="48" x:Name="G" Grid.ColumnSpan="2" Margin="16,108,64,108" Grid.RowSpan="3">G</Button>
-        <Button Grid.Column="5" Grid.Row="1" FontSize="48" x:Name="H" Grid.ColumnSpan="2" Margin="16,108,64,108" Grid.RowSpan="3">H</Button>
-        <Button Grid.Column="6" Grid.Row="1" FontSize="48" x:Name="J" Grid.ColumnSpan="2" Margin="16,108,64,108" Grid.RowSpan="3">J</Button>
-        <Button Grid.Column="7" Grid.Row="1" FontSize="48" x:Name="K" Grid.ColumnSpan="2" Margin="16,108,64,108" Grid.RowSpan="3">K</Button>
-        <Button Grid.Column="8" Grid.Row="1" FontSize="48" x:Name="L" Grid.ColumnSpan="2" Margin="16,108,64,108" Grid.RowSpan="3">L</Button>
-        <Button Grid.Column="0" Grid.Row="2" FontSize="48" x:Name="Z" Grid.ColumnSpan="2" Margin="56,101,24,8" Grid.RowSpan="2">Z</Button>
-        <Button Grid.Column="1" Grid.Row="2" FontSize="48" x:Name="X" Grid.ColumnSpan="2" Margin="56,101,24,8" Grid.RowSpan="2">X</Button>
-        <Button Grid.Column="2" Grid.Row="2" FontSize="48" x:Name="C" Grid.ColumnSpan="2" Margin="56,101,24,8" Grid.RowSpan="2">C</Button>
-        <Button Grid.Column="3" Grid.Row="2" FontSize="48" x:Name="V" Grid.ColumnSpan="2" Margin="56,101,24,8" Grid.RowSpan="2">V</Button>
-        <Button Grid.Column="4" Grid.Row="2" FontSize="48" x:Name="B" Grid.ColumnSpan="2" Margin="56,101,24,8" Grid.RowSpan="2">B</Button>
-        <Button Grid.Column="5" Grid.Row="2" FontSize="48" x:Name="N" Grid.ColumnSpan="2" Margin="56,101,24,8" Grid.RowSpan="2">N</Button>
-        <Button Grid.Column="6" Grid.Row="2" FontSize="48" x:Name="M" Grid.ColumnSpan="2" Margin="56,101,24,8" Grid.RowSpan="2">M</Button>
+    <Grid  KeyDown="key" KeyUp="Grid_KeyUp" x:Name="eee" >
+
+
+
+        <TextBox Style="{DynamicResource TextBoxStyle2}" x:Name="s" Grid.ColumnSpan="10"  FontSize="48"  />
+
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="0" Grid.Row="1"   FontSize="48" x:Name="Q">Q</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="1" Grid.Row="1" FontSize="48"  x:Name="W">W</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="2" Grid.Row="1" FontSize="48" x:Name="E">E</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="3" Grid.Row="1" FontSize="48" x:Name="R">R</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="4" Grid.Row="1" FontSize="48" x:Name="T">T</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="5" Grid.Row="1" FontSize="48" x:Name="Y">Y</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="6" Grid.Row="1" FontSize="48" x:Name="U">U</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="7" Grid.Row="1" FontSize="48" x:Name="I">I</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="8" Grid.Row="1" FontSize="48" x:Name="O">O</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="9" Grid.Row="1" FontSize="48" x:Name="P">P</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="0" Grid.Row="1" FontSize="48" x:Name="A" Margin="16,108,64,108" Grid.RowSpan="3" Grid.ColumnSpan="2">A</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="1" Grid.Row="1" FontSize="48" x:Name="S" Grid.ColumnSpan="2" Margin="16,108,64,108" Grid.RowSpan="3">S</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="2" Grid.Row="1" FontSize="48" x:Name="D" Grid.ColumnSpan="2" Margin="16,108,64,108" Grid.RowSpan="3">D</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="3" Grid.Row="1" FontSize="48" x:Name="F" Grid.ColumnSpan="2" Margin="16,108,64,108" Grid.RowSpan="3">F</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="4" Grid.Row="1" FontSize="48" x:Name="G" Grid.ColumnSpan="2" Margin="16,108,64,108" Grid.RowSpan="3">G</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="5" Grid.Row="1" FontSize="48" x:Name="H" Grid.ColumnSpan="2" Margin="16,108,64,108" Grid.RowSpan="3">H</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="6" Grid.Row="1" FontSize="48" x:Name="J" Grid.ColumnSpan="2" Margin="16,108,64,108" Grid.RowSpan="3">J</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="7" Grid.Row="1" FontSize="48" x:Name="K" Grid.ColumnSpan="2" Margin="16,108,64,108" Grid.RowSpan="3">K</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="8" Grid.Row="1" FontSize="48" x:Name="L" Grid.ColumnSpan="2" Margin="16,108,64,108" Grid.RowSpan="3">L</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="0" Grid.Row="2" FontSize="48" x:Name="Z" Grid.ColumnSpan="2" Margin="56,101,24,8" Grid.RowSpan="2">Z</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="1" Grid.Row="2" FontSize="48" x:Name="X" Grid.ColumnSpan="2" Margin="56,101,24,8" Grid.RowSpan="2">X</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="2" Grid.Row="2" FontSize="48" x:Name="C" Grid.ColumnSpan="2" Margin="56,101,24,8" Grid.RowSpan="2">C</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="3" Grid.Row="2" FontSize="48" x:Name="V" Grid.ColumnSpan="2" Margin="56,101,24,8" Grid.RowSpan="2">V</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="4" Grid.Row="2" FontSize="48" x:Name="B" Grid.ColumnSpan="2" Margin="56,101,24,8" Grid.RowSpan="2">B</Button>
+        <Button Style="{DynamicResource ButtonStyle1}" Grid.Column="5" Grid.Row="2" FontSize="48" x:Name="N" Grid.ColumnSpan="2" Margin="56,101,24,8" Grid.RowSpan="2">N</Button>
+        <Button Style="{DynamicResource ButtonStyle1}"  Grid.Column="6" Grid.Row="2" FontSize="48" x:Name="M" Grid.ColumnSpan="2" Margin="56,101,24,8" Grid.RowSpan="2">M</Button>
 
 
         <Grid.RowDefinitions>

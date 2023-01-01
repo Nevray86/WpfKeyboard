@@ -162,32 +162,32 @@ namespace WpfApp1
                 || e.Key == Key.N || e.Key == Key.M) 
             {
                 
-                Q.Background = new SolidColorBrush(Colors.White);
-                W.Background = new SolidColorBrush(Colors.White);
-                E.Background = new SolidColorBrush(Colors.White);
-                R.Background = new SolidColorBrush(Colors.White);
-                T.Background = new SolidColorBrush(Colors.White);
-                Y.Background = new SolidColorBrush(Colors.White);
-                U.Background = new SolidColorBrush(Colors.White);
-                I.Background = new SolidColorBrush(Colors.White);
-                O.Background = new SolidColorBrush(Colors.White);
-                P.Background = new SolidColorBrush(Colors.White);
-                A.Background = new SolidColorBrush(Colors.White);
-                S.Background = new SolidColorBrush(Colors.White);
-                D.Background = new SolidColorBrush(Colors.White);
-                F.Background = new SolidColorBrush(Colors.White);
-                G.Background = new SolidColorBrush(Colors.White);
-                H.Background = new SolidColorBrush(Colors.White);
-                J.Background = new SolidColorBrush(Colors.White);
-                K.Background = new SolidColorBrush(Colors.White);
-                L.Background = new SolidColorBrush(Colors.White);
-                Z.Background = new SolidColorBrush(Colors.White);
-                X.Background = new SolidColorBrush(Colors.White);
-                C.Background = new SolidColorBrush(Colors.White);
-                V.Background = new SolidColorBrush(Colors.White);
-                B.Background = new SolidColorBrush(Colors.White);
-                N.Background = new SolidColorBrush(Colors.White);
-                M.Background = new SolidColorBrush(Colors.White);
+                Q.Background = new SolidColorBrush(Colors.Gray);
+                W.Background = new SolidColorBrush(Colors.Gray);
+                E.Background = new SolidColorBrush(Colors.Gray);
+                R.Background = new SolidColorBrush(Colors.Gray);
+                T.Background = new SolidColorBrush(Colors.Gray);
+                Y.Background = new SolidColorBrush(Colors.Gray);
+                U.Background = new SolidColorBrush(Colors.Gray);
+                I.Background = new SolidColorBrush(Colors.Gray);
+                O.Background = new SolidColorBrush(Colors.Gray);
+                P.Background = new SolidColorBrush(Colors.Gray);
+                A.Background = new SolidColorBrush(Colors.Gray);
+                S.Background = new SolidColorBrush(Colors.Gray);
+                D.Background = new SolidColorBrush(Colors.Gray);
+                F.Background = new SolidColorBrush(Colors.Gray);
+                G.Background = new SolidColorBrush(Colors.Gray);
+                H.Background = new SolidColorBrush(Colors.Gray);
+                J.Background = new SolidColorBrush(Colors.Gray);
+                K.Background = new SolidColorBrush(Colors.Gray);
+                L.Background = new SolidColorBrush(Colors.Gray);
+                Z.Background = new SolidColorBrush(Colors.Gray);
+                X.Background = new SolidColorBrush(Colors.Gray);
+                C.Background = new SolidColorBrush(Colors.Gray);
+                V.Background = new SolidColorBrush(Colors.Gray);
+                B.Background = new SolidColorBrush(Colors.Gray);
+                N.Background = new SolidColorBrush(Colors.Gray);
+                M.Background = new SolidColorBrush(Colors.Gray);
                
 
             }
